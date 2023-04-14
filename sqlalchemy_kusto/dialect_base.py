@@ -92,7 +92,7 @@ class KustoBaseDialect(default.DefaultDialect, ABC):
 
     def get_table_names(self, connection: Connection, schema: Optional[str] = None, **kwargs) -> List[str]:
         # Schema is not used in Kusto cause database is written in the connection string
-        result = connection.execute(".show tables | project TableName")
+        result = connection.execute(".show tables")
         return [row.TableName for row in result]
 
     def get_columns(
@@ -121,8 +121,11 @@ class KustoBaseDialect(default.DefaultDialect, ABC):
         ]
 
     def get_view_names(self, connection: Connection, schema: Optional[str] = None, **kwargs) -> List[str]:
-        result = connection.execute(".show materialized-views | project Name")
-        return [row.Name for row in result]
+        try:
+            result = connection.execute(".show materialized-views")
+            return [row.Name for row in result]
+        except Exception:
+            return []
 
     def get_pk_constraint(self, connection: Connection, table_name: str, schema: Optional[str] = None, **kw):
         return {"constrained_columns": [], "name": None}
