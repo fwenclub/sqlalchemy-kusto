@@ -5,7 +5,7 @@ DESCRIPTION = "Azure Data Explorer (Kusto) dialect for SQLAlchemy"
 VERSION = "2.0.0"
 
 REQUIREMENTS = [
-    "azure-kusto-data==3.*",
+    "azure-kusto-data==4.1.*",
     "sqlalchemy==1.4.*",
     "typing-extensions~=4.5.0",
 ]
