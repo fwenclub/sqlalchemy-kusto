@@ -158,8 +158,8 @@ class KustoBaseDialect(default.DefaultDialect, ABC):
             query = ".show tables"
             dbapi_connection.execute(query)
             return True
-        except sqlalchemy_kusto.OperationalError:
-            return False
+        except sqlalchemy_kusto.OperationalError as e:
+            raise e
 
     def do_rollback(self, dbapi_connection: sqlalchemy_kusto.dbapi.Connection):
         pass
