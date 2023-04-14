@@ -87,7 +87,6 @@ class Connection:
         self.database = database
         self.properties = ClientRequestProperties()
 
-    @check_closed
     def close(self):
         """Close the connection now. Kusto does not require to close the connection."""
         self.closed = True
@@ -97,6 +96,7 @@ class Connection:
     @check_closed
     def commit(self):
         """Kusto does not support transactions."""
+        pass
 
     @check_closed
     def cursor(self):
@@ -155,7 +155,6 @@ class Cursor:
         results = list(self._results)  # type: ignore # check_result decorator will ensure that value is not None
         return len(results)
 
-    @check_closed
     def close(self):
         """Closes the cursor."""
         self.closed = True
