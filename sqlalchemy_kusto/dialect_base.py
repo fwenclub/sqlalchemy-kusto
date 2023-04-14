@@ -84,7 +84,7 @@ class KustoBaseDialect(default.DefaultDialect, ABC):
         return [], kwargs
 
     def get_schema_names(self, connection: Connection, **kwargs) -> List[str]:
-        result = connection.execute(".show databases | project DatabaseName")
+        result = connection.execute(".show databases")
         return [row.DatabaseName for row in result]
 
     def has_table(self, connection: Connection, table_name: str, schema: Optional[str] = None, **kwargs) -> bool:
