@@ -14,7 +14,7 @@ install: venv install-dev
 
 venv: # Create new venv if not exists
 	@echo "Creating new virtual environment $(GREEN_ITALIC)$(VENV_DIR)$(DEFAULT) if not exists..."
-	@test -d $(VENV_DIR) || python -m venv $(VENV_DIR)
+	@test -d $(VENV_DIR) || python3 -m venv $(VENV_DIR)
 	$(PYTHON) -m pip install --upgrade pip
 	$(PYTHON) --version
 	@echo "Done! You may use $(GREEN_ITALIC)source $(VENV_DIR)/bin/activate$(DEFAULT) to activate it and install packages manually, or use Makefile targets for all project setup routines.\n"

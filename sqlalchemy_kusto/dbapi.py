@@ -83,6 +83,7 @@ class Connection:
             )
 
         self.kusto_client = KustoClient(kcsb)
+        self.kusto_client._query_endpoint = cluster + "/v1/rest/query"
         self.database = database
         self.properties = ClientRequestProperties()
 
